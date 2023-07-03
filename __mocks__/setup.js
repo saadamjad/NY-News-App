@@ -18,10 +18,7 @@ jest.mock('react-redux', () => ({
 	useSelector: jest.fn(),
 }));
 
-jest.mock('../src/state/actions/auth', () => ({
-	attemptSignup: jest.fn(),
-	attemptLogin: jest.fn(),
-}));
+
 
 jest.mock('../src/utils/hooks', () => ({
 	useNavigateRoute: jest.fn().mockReturnValue({
@@ -37,4 +34,8 @@ jest.mock('react-native/Libraries/Alert/Alert', () => ({
 
 jest.mock('../src/state/actions', () => ({
 	getSearchArticleAction: jest.fn(),
+	attemptSignup: jest.fn(),
+	attemptLogin: jest.fn(),
+	getWorldNewsAction: jest.fn(),
+	getScienceNewsAction: jest.fn(),
 }));
