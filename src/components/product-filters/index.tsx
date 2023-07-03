@@ -65,4 +65,4 @@ const NewSelectionBar = ({ testID = 'parentContainerFilter' }) => {
 	);
 };
 
-export default NewSelectionBar;
+export default React.memo(NewSelectionBar);

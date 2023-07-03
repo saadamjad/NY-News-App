@@ -11,9 +11,15 @@ import {
 } from '../../../state/selectors/features/search';
 import Header from '../../../components/header';
 import { staticText } from '../../../utils/staticTexts';
+
+const renderSeperator = () => {
+	return <View style={styles.itemSeperator} />;
+};
+
 const SearchResultScreen = ({ navigation }: any) => {
 	const searchData = useSelector(getSearchData);
 	const loader = useSelector(isLoading);
+	const noSearchResultFound = searchData && searchData?.length === 0 && !loader;
 
 	const renderItem = ({ item }: { item: Product }) => {
 		return (
@@ -37,10 +43,6 @@ const SearchResultScreen = ({ navigation }: any) => {
 		);
 	};
 
-	const renderSeperator = () => {
-		return <View style={styles.itemSeperator} />;
-	};
-
 	function renderSearchInput() {
 		return (
 			<FlatList
@@ -52,12 +54,11 @@ const SearchResultScreen = ({ navigation }: any) => {
 			/>
 		);
 	}
-
 	return (
 		<View style={styles.container}>
 			{renderHeader()}
 
-			{searchData && searchData?.length === 0 && !loader ? (
+			{noSearchResultFound ? (
 				<Text
 					testID='no-result-found'
 					style={styles.Text}>

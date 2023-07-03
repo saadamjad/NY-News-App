@@ -16,6 +16,7 @@ import {
 } from '../../../state/actions';
 import { Images } from '../../../utils/theme';
 import Header from '../../../components/header';
+import { staticText } from '../../../utils/staticTexts';
 
 const renderSeperator = () => {
 	return <View style={styles.itemSeperator} />;
@@ -66,10 +67,7 @@ const SearchScreen = ({ navigation }: INavigationProps) => {
 	const SearchComponent = useCallback(() => {
 		return (
 			<>
-				<SearchTextInput
-					textInput='textInput'
-					navigation={navigation}
-				/>
+				<SearchTextInput navigation={navigation} />
 				<View style={styles.flatListView}>
 					{isLoader && renderLoader()}
 
@@ -84,7 +82,10 @@ const SearchScreen = ({ navigation }: INavigationProps) => {
 						ListHeaderComponent={
 							recentSearches?.length > 0 ? (
 								<View style={styles.headerStyle}>
-									<Text style={styles.recentText}>Recent Searches</Text>
+									<Text style={styles.recentText}>
+										{' '}
+										{staticText.RECENT_SEARCHES}{' '}
+									</Text>
 								</View>
 							) : null
 						}
@@ -93,7 +94,10 @@ const SearchScreen = ({ navigation }: INavigationProps) => {
 
 					<View style={styles.emptyView}>
 						{recentSearches.length === 0 && (
-							<Text style={styles.recentText}>No Recent Searches!</Text>
+							<Text style={styles.recentText}>
+								{' '}
+								{staticText.NO_RESENT_SEARCHES}{' '}
+							</Text>
 						)}
 					</View>
 				</View>
@@ -119,4 +123,4 @@ const SearchScreen = ({ navigation }: INavigationProps) => {
 	);
 };
 
-export default SearchScreen;
+export default React.memo(SearchScreen);

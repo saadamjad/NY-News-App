@@ -7,7 +7,7 @@ const getDateMonthYear = (givenDate: allAnyTypes) => {
 	const year = date?.getFullYear();
 	if (date) return day + '-' + month + '-' + year;
 
-	return '';
+	return 'N/A';
 };
 
 export { getDateMonthYear };

@@ -43,12 +43,7 @@ describe('ProductList', () => {
 		const dispatchMock = jest.fn();
 
 		dispatch.mockReturnValue(dispatchMock);
-		const { getByTestId } = render(
-			<ProductList
-				testID='productCard'
-				navigation={navigationMock}
-			/>
-		);
+		const { getByTestId } = render(<ProductList navigation={navigationMock} />);
 
 		const productCard = getByTestId('flatListComponent');
 
