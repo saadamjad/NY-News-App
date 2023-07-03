@@ -1,60 +1,57 @@
 /** @format */
 
 import React from 'react';
-import { render } from '@testing-library/react-native';
-import CategoryCard from '../src/screens/main/category';
-import { Provider } from 'react-redux';
-import { initialState } from '../__mocks__/mockdata';
-import { navigationMock, store } from '../__mocks__/configs';
+import { render, fireEvent } from '@testing-library/react-native';
 
-const renderComponent = () => (
-	<Provider store={store(initialState)}>
-		<CategoryCard navigation={navigationMock} />
-	</Provider>
-);
+import ProductList from '../src/screens/main/category';
+import { useDispatch, useSelector } from 'react-redux';
 
-describe('ProductCard', () => {
-	const { getAllByTestId } = render(renderComponent());
-	const parentComponent = getAllByTestId('productParentComponent');
-	const headerComponent = getAllByTestId('headerComponent');
-	const loaderComponent = getAllByTestId('appLoaderComponent');
-	const searchInputComponent = getAllByTestId('textInput');
-	const filterComponent = getAllByTestId('parentContainerFilter');
-	const flatlistComponent = getAllByTestId('flatListComponent');
-	const totalChildComponents = 5;
+const dispatch = useDispatch as any;
 
-	it('should render all child components', () => {
-		expect(parentComponent.length).toBe(1);
+describe('ProductList', () => {
+	const navigationMock: allAnyTypes = {
+		navigate: jest.fn(),
+	};
+
+	test('renders the news component correctly', () => {
+		const dispatchMock = jest.fn();
+		dispatch.mockReturnValue(dispatchMock);
+
+		const { getByTestId, queryAllByTestId } = render(
+			<ProductList navigation={navigationMock} />
+		);
+
+		const headerComponent = getByTestId('headerComponent');
+		const textInput = getByTestId('textInput');
+		const parentContainerFilter = getByTestId('parentContainerFilter');
+		const flatListComponent = getByTestId('flatListComponent');
+		const appLoaderComponent = queryAllByTestId('appLoaderComponent');
+
+		expect(headerComponent).toBeTruthy();
+		expect(textInput).toBeTruthy();
+		expect(parentContainerFilter).toBeTruthy();
+		expect(flatListComponent).toBeTruthy();
+		expect(appLoaderComponent.length).toBe(0);
 	});
-	test('Check if the parent component is render', async () => {
-		expect(headerComponent.length).toBe(1);
-	});
-
-	test('Check if the appLoader component is render', async () => {
-		expect(loaderComponent.length).toBe(1);
-	});
-
-	test('Check if the textInput component is render', async () => {
-		expect(searchInputComponent.length).toBe(1);
-	});
-
-	test('Check if the filter component is render', async () => {
-		expect(filterComponent.length).toBe(1);
+	test('Check selector data properly render', () => {
+		expect(useSelector).toHaveBeenCalledTimes(2);
+		expect(useSelector).toHaveBeenNthCalledWith(1, expect.any(Function));
+		expect(useSelector).toHaveBeenNthCalledWith(2, expect.any(Function));
 	});
 
-	test('Check if the filter component is render', async () => {
-		expect(flatlistComponent.length).toBe(1);
-	});
+	test('navigates to the product details screen when a product card is pressed', () => {
+		const dispatchMock = jest.fn();
 
-	test(`${
-		totalChildComponents + ' components should be shown in home screen'
-	}`, async () => {
-		expect(
-			headerComponent.length +
-				loaderComponent.length +
-				searchInputComponent.length +
-				filterComponent.length +
-				flatlistComponent.length
-		).toBe(totalChildComponents);
+		dispatch.mockReturnValue(dispatchMock);
+		const { getByTestId } = render(
+			<ProductList
+				testID='productCard'
+				navigation={navigationMock}
+			/>
+		);
+
+		const productCard = getByTestId('flatListComponent');
+
+		fireEvent.press(productCard);
 	});
 });

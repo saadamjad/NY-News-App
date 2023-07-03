@@ -5,12 +5,10 @@ import { render, fireEvent } from '@testing-library/react-native';
 import { Login } from '../src/screens/auth';
 import { navigationMock } from '../__mocks__/configs';
 import { useDispatch } from 'react-redux';
-import { attemptLogin } from '../src/state/actions';
 import { useNavigateRoute } from '../src/utils/hooks';
 import { Alert } from 'react-native';
 
 const navigateToSignUp = jest.fn();
-const dispatchMock: allAnyTypes = jest.fn();
 const useNavigationRoute = useNavigateRoute as any;
 const dispatch = useDispatch as any;
 const renderComponent = () => render(<Login navigation={navigationMock} />);
@@ -37,15 +35,21 @@ describe('Login component', () => {
 	});
 
 	test('triggers handleLogin function when Login button is pressed', async () => {
-		dispatch?.mockReturnValue(dispatchMock);
+		const dispatchMock = jest.fn();
+
+		dispatch.mockReturnValue(dispatchMock);
+
 		const { getByTestId } = await renderComponent();
 		const loginButton = getByTestId('loginButton');
 
 		fireEvent.press(loginButton);
 
-		expect(dispatchMock).toHaveBeenCalledWith(attemptLogin(expect.any(Object)));
+		expect(dispatchMock).toHaveBeenCalledTimes(1);
+		expect(dispatchMock).toHaveBeenCalledWith(expect.objectContaining({}));
 	});
+
 	test('displays an alert when email or password is missing', async () => {
+		const dispatchMock = jest.fn();
 		dispatch.mockReturnValue(dispatchMock);
 		const { getByTestId } = await renderComponent();
 

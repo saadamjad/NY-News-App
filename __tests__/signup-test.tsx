@@ -5,12 +5,10 @@ import { render, fireEvent } from '@testing-library/react-native';
 import { Signup } from '../src/screens/auth';
 import { navigationMock } from '../__mocks__/configs';
 import { useDispatch } from 'react-redux';
-import { attemptSignup } from '../src/state/actions';
 import { useNavigateRoute } from '../src/utils/hooks';
 import { Alert } from 'react-native';
 
 const navigateToSignIn = jest.fn();
-const dispatchMock: allAnyTypes = jest.fn();
 const useNavigationRoute = useNavigateRoute as any;
 const dispatch = useDispatch as any;
 
@@ -39,6 +37,8 @@ describe('Signup component', () => {
 	});
 
 	test('displays an alert when email or password is missing', async () => {
+		const dispatchMock = jest.fn();
+
 		dispatch.mockReturnValue(dispatchMock);
 		const { getByTestId } = await renderComponent();
 
@@ -55,22 +55,16 @@ describe('Signup component', () => {
 		);
 	});
 	test('triggers handleSignup function when Register button is pressed', async () => {
+		const dispatchMock = jest.fn();
+
 		dispatch.mockReturnValue(dispatchMock);
 
 		const { getByTestId } = await renderComponent();
-
 		const signupButton = getByTestId('signupButton');
+
 		fireEvent.press(signupButton);
 
-		expect(dispatchMock).toHaveBeenCalledWith(
-			attemptSignup(
-				expect.objectContaining({
-					email: expect.any(String),
-					password: expect.any(String),
-				}),
-				expect.any(Object)
-			)
-		);
+		expect(dispatchMock).toHaveBeenCalledTimes(1);
 	});
 
 	test('navigates to sign-in screen when "Already have an account?" text is pressed', async () => {

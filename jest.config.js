@@ -7,7 +7,7 @@ module.exports = {
 
 	transformIgnorePatterns: [
 		//   // eslint-disable-next-line max-len
-		'node_modules/(?!(@react-native|react-native|react-native-image-placeholder|react-native-safe-area-context|react-native-image-placeholde|@react-native-async-storage/async-storage|@react-navigation/stack|react-navigation|@react-navigation/.* )/)',
+		'node_modules/(?!(@react-native|react-native|react-native-snap-carousel|react-native-image-placeholder|react-native-safe-area-context|react-native-image-placeholde|@react-native-async-storage/async-storage|@react-navigation/stack|react-navigation|@react-navigation/.* )/)',
 	],
 	setupFiles: ['./__mocks__/setup.js'],
 	testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',
