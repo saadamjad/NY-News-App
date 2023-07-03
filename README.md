@@ -1,7 +1,7 @@
 # assignment
 
 React Native Project.
-This is a React Native project that showcases the implementation of basic ecomerce UI and unit testing with Jest and the usage of Redux for state management.
+This is a React Native project that showcases the implementation of basic News App and unit testing with Jest and the usage of Redux for state management.
 
 
 ## Project Setup
@@ -9,9 +9,9 @@ This is a React Native project that showcases the implementation of basic ecomer
   <summary>Click to expand!</summary>
 
 
-- Clone this repo `git clone https://github.com/saadamjad/assignment-react-native-fabric`
+- Clone this repo `git clone https://github.com/saadamjad/NY-News-App`
 
-- Install dependencies `yarn install`
+- Install dependencies `yarn install` .
 - Go to the root directory run this command `yarn android or yarn ios`
 
 </details>
@@ -39,19 +39,50 @@ This is a React Native project that showcases the implementation of basic ecomer
 
 ## Development Notes
 
-Requirements : https://www.freepik.com/free-vector/furniture-shopping-app-concept_9978560.htm
+Requirements 
+	•	Build a simple app to hit the NY Times Top Stories API and show a list of stories, that shows details when items on the list are tapped (a typical master/detail app).  (Done) 
+	•	User will either select to see categorized top news or search for articles  (Done) 
+	•	For categorized news, user should choose a news category out of 2 options: (Done) 
+	•	World
+	•	Science
+	•	After choosing, each category should list a different list of news. (Done) 
+	•	When clicking on an article, details must be shown plus the comments on that article  (Done)  
+	•	For articles search, the user must have a screen with an input and history of the last 5 searched words. (Done) 
+	•	Application should have user registration and login screens, they need to be integrated with local server using this repo -> https://github.com/techiediaries/fake-api-jwt-json-server  (Done) 
+	•	The token we fetch from login call, needs to be passed through all NY Times requests in Authorization JWT Bearer token header.   (Done) 
+	•	App should run on Android & iOS (Done) 
+	•	Use of Redux for error handling and data persistence. (Done) 
+	•	Use of Axios (Done) 
+	•	Unit test and code coverage (Done) 
+	•	Code to be generic and simple  (Done) 
+	•	Leverage today’s best coding practices (Done) But still many things can be implemented according to the app scalability.  
+	•	Clear README.md that explains how the code and the test can be run, how the coverage reports can be generated and how the local server can run. (Done) 
+	•	Design is up to you.  (Done) 
 
 
-### Unit Testing with Jest
+## How to run Jest Test Cases
 
 Jest is a popular JavaScript testing framework that provides an easy-to-use and comprehensive solution for unit testing. It is commonly used in React Native projects to test components, functions, and other parts of the application.
 
 In this project, we have included unit tests for some of the components using Jest. You can find the test files inside the __tests__ directory.
+You can find all mock data inside the __mocks__ directory.
 
 To run the unit tests, use the following command:
 
+
+   • `npm test or yarn test`. 
+   • `npm test or yarn test --coverage` (  for test coverage).
+   • `npm test or yarn test filename` (  for sepecific  file).
+
+
+
+  ### Run Local Server
+close this repo : `https://github.com/techiediaries/fake-api-jwt-json-server `
+
   <details>
-  -  `npm test or yarn test`
+   - go to the root directory
+   - open terminal and run `npm run start-auth`
+
   </details>
 
 ### Redux

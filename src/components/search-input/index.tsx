@@ -13,7 +13,7 @@ const SearchTextInput = ({
 	navigation,
 }: ISearchTextInputProps) => {
 	const dispatch: allAnyTypes = useDispatch();
-	const [search, setSearch] = useState('');
+	const [search, setSearch] = useState<isTypeString>('');
 	const { navigateToSearch } = useNavigateRoute({
 		navigation,
 	});

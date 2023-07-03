@@ -17,8 +17,7 @@ import styles from '../login/styled';
 import { AppLoader } from '../../../components';
 import { staticText } from '../../../utils/staticTexts';
 
-const Signup = ({ navigation }: any) => {
-
+const Signup = ({ navigation }: INavigationRequiredProps) => {
 	const [email, setEmail] = useState<isTypeString>(
 		__DEV__ ? 'nilson@email.com' : ''
 	);

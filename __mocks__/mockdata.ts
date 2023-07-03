@@ -4,7 +4,7 @@
 const mockProductCardData: any = {
 	id: 1,
 	title: 'Test',
-	price: '$9.99',
+	price: 'testing',
 	description: 'This_is_description',
 	productImage: { uri: 'https://example.com/image.png' },
 };
@@ -14,10 +14,7 @@ const mockSearchData: any = [
 ];
 
 const initialState = {
-	features: {
-		category: {},
-		allProducts: [],
-	},
+	features: {},
 };
 
 const allProducts = [

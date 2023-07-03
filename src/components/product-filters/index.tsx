@@ -14,14 +14,12 @@ const NewSelectionBar = ({ testID = 'parentContainerFilter' }) => {
 		{
 			id: 'child-1',
 			value: 'World',
-			image: Images.images.downArrow,
 			selected: true,
 			callBack: () => dispatch(getWorldNewsAction()),
 		},
 		{
 			id: 'child-2',
 			value: 'Science',
-			image: Images.images.downArrow,
 			selected: false,
 			callBack: () => dispatch(getScienceNewsAction()),
 		},

@@ -4,6 +4,7 @@
  * @format
  */
 
+import { Alert } from 'react-native';
 import { ROUTES } from '../../../constants/navigation-routes';
 import { AuthService } from '../../../services';
 import { LocalStorageService } from '../../../services/local-storage';
@@ -35,6 +36,7 @@ export const attemptLogin =
 			});
 			await localStorageService?.persist('authToken', access_token);
 		} catch (error: allAnyTypes) {
+			Alert.alert('Error', 'Email or Password Incorrect');
 			dispatch({ type: ATTEMPT_LOGIN_FAILURE });
 			console.log(error);
 		}

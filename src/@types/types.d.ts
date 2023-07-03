@@ -68,13 +68,15 @@ type allAnyTypes =
  interface INavigationProps {
 		navigation?: StackNavigationProp;
  }
+ interface INavigationRequiredProps {
+		navigation: StackNavigationProp;
+ }
  interface IPropSlider {
 		data: isTypeArray;
  }
 
  interface OptionBarData {
 		value: isTypeString;
-		image: any;
 		selected: boolean;
 		callBack: any;
 		id?: string;

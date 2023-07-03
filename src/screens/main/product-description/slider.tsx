@@ -1,13 +1,13 @@
 /** @format */
 
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { View, Text, Image, Dimensions } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import styles from './styled';
 const SliderComponent: React.FC<IPropSlider> = ({ data }) => {
-	const carouselRef = useRef(null);
-	const getScreenwidth = Dimensions.get('window').width;
-	const [index, setIndex] = useState(0);
+	const carouselRef: allAnyTypes = useRef(null);
+	const getScreenwidth: number = Dimensions.get('window').width;
+	const [index, setIndex] = useState<number>(0);
 
 	const _renderCarouselItems = ({ index, item }: FlatListIProps) => {
 		return (
@@ -24,10 +24,10 @@ const SliderComponent: React.FC<IPropSlider> = ({ data }) => {
 		);
 	};
 
-	const renderSlider = () => {
+	const renderSlider = useCallback(() => {
 		return (
 			<View style={styles.sliderContainer}>
-				{/* <Carousel
+				<Carousel
 					layout='default'
 					sliderWidth={getScreenwidth}
 					itemWidth={getScreenwidth}
@@ -48,10 +48,10 @@ const SliderComponent: React.FC<IPropSlider> = ({ data }) => {
 					carouselRef={carouselRef}
 					dotContainerStyle={styles.dotContainer}
 					containerStyle={styles.paginationContainer}
-				/> */}
+				/>
 			</View>
 		);
-	};
+	}, [data]);
 
 	return renderSlider();
 };

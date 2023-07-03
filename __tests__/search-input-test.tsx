@@ -8,8 +8,10 @@ import { getSearchArticleAction } from '../src/state/actions';
 import { navigationMock } from '../__mocks__/configs';
 
 const dispatch = useDispatch as any;
+
 const renderComponent = () =>
 	render(<SearchTextInput navigation={navigationMock} />);
+	
 describe('SearchTextInput', () => {
 	test('dispatches search action when search button is pressed', async () => {
 		const dispatchMock = jest.fn();
